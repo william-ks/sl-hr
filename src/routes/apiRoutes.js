@@ -5,4 +5,6 @@ const apiRouter = Router();
 
 apiRouter.post("/create-contract", createContract);
 
+apiRouter.get("/list-contracts", createContract);
+
 module.exports = { apiRouter };

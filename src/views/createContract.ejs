@@ -6,64 +6,233 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar Contrato</title>
-    <link rel="stylesheet" href="/css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!-- jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- CSS do Toastr -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+
+    <!-- JS do Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <link rel="stylesheet" href="/css/global.css">
+    <style>
+        main,
+        section {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(245, 245, 245);
+        }
+
+
+        .create-contract .center {
+            width: 100%;
+            padding: 15px 2%;
+        }
+
+        .create-contract .box {
+            background-color: white;
+            width: 100%;
+            padding: 16px 4%;
+            border-radius: 6px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .create-contract .title {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .create-contract .form {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .create-contract .flex {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .create-contract .inputDesc {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: rgb(159, 159, 159);
+            margin-bottom: -2px;
+        }
+
+        .create-contract .btn {
+            font-size: 1.6rem;
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .create-contract .buttonsGroup {
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h1 class="mb-4">Criar Novo Contrato</h1>
-        <form id="createContractForm">
-            <div class="mb-3">
-                <label for="name" class="form-label">Nome do Contrato</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+    <main class="create-contract">
+        <section>
+            <div class="center">
+                <div class="box">
+                    <h2 class="title">Novo Contrato</h2>
+                    <form class="form">
+                        <label for="name">
+                            <p class="inputDesc">Nome:</p>
+                            <input type="text" id="nameInput">
+                        </label>
+
+                        <label for="textInput">
+                            <p class="inputDesc">Texto do Contrato:</p>
+                            <textarea name="text" id="textInput"></textarea>
+                        </label>
+
+                        <div class="flex">
+                            <label for="validityStartInput">
+                                <p class="inputDesc">Inicio da Vigência:</p>
+                                <input type="date" id="validityStartInput">
+                            </label>
+
+                            <label for="validityEndInput">
+                                <p class="inputDesc">Fim da Vigência:</p>
+                                <input type="date" id="validityEndInput">
+                            </label>
+                        </div>
+
+                        <div class="flex">
+                            <label for="valueInput">
+                                <p class="inputDesc">Valor da rubrica:</p>
+                                <input type="number" id="valueInput" />
+                            </label>
+
+                            <label for="paymentDateInput">
+                                <p class="inputDesc">Data de Pagamento:</p>
+                                <input type="date" id="paymentDateInput" />
+                            </label>
+                        </div>
+
+                        <label for="categoryInput">
+                            <p class="inputDesc">Categoria:</p>
+                            <select name="" id="categoryInput">
+                                <option value="default">
+                                    Selecione uma categoria
+                                </option>
+                                <option value="1">
+                                    Contrato temporario
+                                </option>
+                            </select>
+                        </label>
+                    </form>
+                    <div class="buttonsGroup">
+                        <button type="button" id="main_btn" class="btn btn-outline-primary">Criar</button>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="text" class="form-label">Texto do Contrato</label>
-                <textarea class="form-control" id="text" name="text" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="validity" class="form-label">Vigência</label>
-                <input type="text" class="form-control" id="validity" name="validity" required>
-            </div>
-            <div class="mb-3">
-                <label for="value" class="form-label">Valor</label>
-                <input type="number" class="form-control" id="value" name="value" step="0.01" required>
-            </div>
-            <div class="mb-3">
-                <label for="paymentDate" class="form-label">Data de Pagamento</label>
-                <input type="date" class="form-control" id="paymentDate" name="paymentDate" required>
-            </div>
-            <div class="mb-3">
-                <label for="category" class="form-label">Categoria</label>
-                <!-- <input type="text" class="form-control" id="category" name="category" required> -->
-                <select class="form-select" id="category" name="category">
-                    <% for(const categorie of categories){ %>
-                        <option value="<%= categorie.id %>">
-                            <%= categorie.name %>
-                        </option>
-                        <% } %>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </form>
-    </div>
+        </section>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-        document.getElementById('createContractForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
-            try {
-                await axios.post('/api/contracts', data);
-                toastr.success('Contrato criado com sucesso!', 'Sucesso');
-            } catch (error) {
-                toastr.error('Erro ao criar contrato.', 'Erro');
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            const nameInput = $('#nameInput');
+            const textInput = $("#textInput");
+            const valueInput = $("#valueInput");
+            const vigenciStartInput = $("#validityStartInput");
+            const vigenciEndInput = $("#validityEndInput");
+            const paymentDateInput = $("#paymentDateInput");
+            const categoryIdInput = $("#categoryInput")
+            const main_btn = $("#main_btn");
+
+            const validateForm = (form) => {
+                if (!form.name) {
+                    toastr.error('O campo nome é obrigatorio.', 'Erro');
+                    return true;
+                }
+                if (!form.text) {
+                    toastr.error('O texto do contrato obrigatorio.', 'Erro');
+                    return true;
+                }
+                if (!form.validity_start) {
+                    toastr.error('O inicio da vigência é obrigatorio.', 'Erro');
+                    return true;
+                }
+                if (!form.validity_end) {
+                    toastr.error('O fim da vigência é obrigatorio.', 'Erro');
+                    return true;
+                }
+                if (!form.value) {
+                    toastr.error('O valor da rubrica obrigatorio.', 'Erro');
+                    return true;
+                }
+                if (!form.paymentDate) {
+                    toastr.error('A data de pagamento é obrigatoria.', 'Erro');
+                    return true;
+                }
+                if (!form.category || form.category === 'default') {
+                    toastr.error('A categoria é obrigatoria.', 'Erro');
+                    return true;
+                }
+
             }
-        });
+
+            main_btn.click(async () => {
+                const data = {
+                    name: nameInput.val(),
+                    text: textInput.val(),
+                    value: valueInput.val(),
+                    validity_start: vigenciStartInput.val(),
+                    validity_end: vigenciEndInput.val(),
+                    paymentDate: paymentDateInput.val(),
+                    category: categoryIdInput.val()
+                }
+
+
+                if (validateForm(data)) return;
+
+
+                try {
+                    await axios.post('/api/create-contract');
+                    toastr.success('Contrato criado com sucesso!', 'Sucesso');
+                } catch (error) {
+                    console.log(error);
+                    toastr.error('Erro ao criar contrato.', 'Erro');
+                }
+
+            })
+        })
+
     </script>
 </body>
 

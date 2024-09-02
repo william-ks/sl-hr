@@ -11,9 +11,7 @@ viewsRouter.get("/create-contract", async (req, res) => {
 
 viewsRouter.get("/manage-contracts", async (req, res) => {
   try {
-    // const categoriesSum = await Contract.sumByCategory();
-    // const contracts = await Contract.findAll();
-    res.render("manageContracts", { categoriesSum, contracts });
+    res.render("manageContracts", {});
   } catch (error) {
     res.status(500).send("Erro ao carregar contratos");
   }

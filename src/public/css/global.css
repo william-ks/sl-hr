@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -20,6 +20,12 @@ body,
 html {
     font-size: 62.5%;
 }
+
+.btn {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
 
 body {
     background-color: rgb(250, 250, 250);
@@ -65,10 +71,10 @@ main {
     height: 100%;
 }
 
-input:is([type='email'], [type='password'], [type='text'], [type='date']),
+input:is([type='email'], [type='password'], [type='text'], [type='date'], [type="number"]),
 textarea {
-    font-size: 1rem;
-    font-weight: 200;
+    font-size: 1.15rem;
+    font-weight: 300;
 
     width: 100%;
     height: 45px;
@@ -78,7 +84,7 @@ textarea {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
 }
 
-input:is([type='email'], [type='password'], [type='text'], [type='date']):hover,
+input:is([type='email'], [type='password'], [type='text'], [type='date'], [type="number"]):hover,
 textarea:hover {
     border-color: #b1b1b1;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -88,17 +94,18 @@ textarea {
     resize: none;
     width: 100%;
     height: 120px;
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 300;
     padding: 7px;
     line-height: auto;
 }
 
 select {
-    font-size: 1rem;
-    font-weight: 200;
-
+    font-size: 1.15rem;
+    font-weight: 300;
+    width: 100%;
     height: 45px;
+    cursor: pointer;
     line-height: 45px;
     padding: 0 10px;
     border: 1px solid #ccc;
@@ -164,4 +171,4 @@ button.button:not(:disabled):active {
     .center {
         padding: 0 4%;
     }
-} */
+}

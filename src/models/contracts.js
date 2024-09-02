@@ -11,10 +11,29 @@ const Contract = sequelize.define("Contract", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
+  text: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+  },
+  value: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  validity_start: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  validity_end: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  paymentDate: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  category: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 

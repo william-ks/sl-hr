@@ -1,16 +1,36 @@
 const Contract = require("../models/contracts");
 
 const createContract = async (req, res) => {
-  const { name, text, startAt, endAt, value, payment_date, category } =
-    req.body;
+  const {
+    name,
+    text,
+    value,
+    validity_start,
+    validity_end,
+    paymentDate,
+    category,
+  } = req.body;
+
+  if (
+    !name ||
+    !text ||
+    !value ||
+    !validity_start ||
+    !validity_end ||
+    !paymentDate ||
+    !category
+  ) {
+    return res.status(400).json("Error ao cadastrar um novo contrato.");
+  }
+
   try {
     await Contract.create({
       name,
       text,
-      startAt,
-      endAt,
       value,
-      payment_date,
+      validity_start,
+      validity_end,
+      paymentDate,
       category,
     });
 

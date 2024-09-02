@@ -18,7 +18,7 @@ sequelize
   .sync()
   .then(() => {
     app.listen(process.env.PORT, () => {
-      console.log(`Servidor rodando na porta ${process.env.PORT}`);
+      console.log("\x1b[36m%s\x1b[0m", `😎 [server]: is running! (☞ﾟヮﾟ)☞ http://localhost:${process.env.PORT}`);
     });
   })
   .catch((err) =>
