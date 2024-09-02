@@ -1,4 +1,5 @@
-const Contract = require("../models/contracts");
+const db = require("../models/index");
+const Contract = db.Contract;
 
 const createContract = async (req, res) => {
   const {
@@ -20,6 +21,7 @@ const createContract = async (req, res) => {
     !paymentDate ||
     !category
   ) {
+
     return res.status(400).json("Error ao cadastrar um novo contrato.");
   }
 
@@ -36,6 +38,7 @@ const createContract = async (req, res) => {
 
     return res.status(201).end();
   } catch (e) {
+    console.log(e);
     return res.status(404).json({
       message: "Error ao criar contrato.",
     });

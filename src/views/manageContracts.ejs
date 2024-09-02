@@ -98,9 +98,14 @@
                     flex: 1,
                 },
                 {
-                    field: "Valor",
-                    valueFormatter: (p) => "R$" + Math.floor(p.data.value * 100).toLocaleString(),
+                    field: "value",
+                    headerName: "Valor",
+                    valueFormatter: (p) => {
+                        console.log(p);
+                        return (p.value / 100).toLocaleString("pt-BR", { minimumFractionDigits: 2 })
+                    },
                     flex: 1,
+                    sortable: true,
                 },
                 {
                     headerName: "Vigência",
@@ -118,7 +123,7 @@
                     flex: 1,
                 },
 
-                { field: "", cellRenderer: CustomButtonComponent, flex: 1 },
+                { field: "", cellRenderer: CustomButtonComponent, flex: 1, sortable: false },
             ],
         };
 

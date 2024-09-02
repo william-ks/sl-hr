@@ -133,5 +133,5 @@ const data = [
     validity_end: "28/02/2026",
     paymentDate: "15/03/2025",
     category: "Consultoria Jurídica",
-  },
+  }
 ];

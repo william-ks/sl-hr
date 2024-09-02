@@ -1,12 +1,10 @@
 const { Router } = require("express");
-const ContractCategories = require("../models/contractCategories");
 
 const viewsRouter = Router();
 
 viewsRouter.get("/create-contract", async (req, res) => {
-  const categories = await ContractCategories.findAll();
 
-  res.render("createContract", { categories });
+  res.render("createContract");
 });
 
 viewsRouter.get("/manage-contracts", async (req, res) => {
